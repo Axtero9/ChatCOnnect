@@ -7,8 +7,8 @@ import Waiting from './components/Waiting';
 import ChatRoom from './components/ChatRoom';
 import { WebRTCManager } from './utils/webrtc';
 
-// Connect to socket backend (using relative path which matches dev proxy or current origin)
-const SOCKET_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/';
+// Connect to socket backend (supports environment variable or fallback)
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin);
 
 export default function App() {
   const [socket, setSocket] = useState(null);
